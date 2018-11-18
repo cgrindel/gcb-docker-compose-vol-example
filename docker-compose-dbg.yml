@@ -1,0 +1,30 @@
+version: '3.2'
+
+services:
+
+  lrdc:
+    image: chuck/ubuntu
+    container_name: lrdc
+    entrypoint: ['/test.sh']
+    # entrypoint:
+      # - ls
+      # - '-l'
+      # - '/'
+        # # - '/workspace'
+    volumes:
+      # - homevol:/workspace
+      - lrdc_stuff:/lrdc
+      # - type: bind
+        # source: /lrdc
+        # target: /lrdc
+
+volumes:
+  # homevol:
+     # external: true
+  lrdc_stuff:
+     external: true
+
+networks:
+  default:
+    external:
+      name: cloudbuild

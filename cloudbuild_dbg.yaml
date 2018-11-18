@@ -1,0 +1,26 @@
+steps:
+
+- name: ubuntu
+  args: ['mkdir', '-p', '/lrdc/resources', '/lrdc/input', '/lrdc/output', '/lrdc/log']
+  volumes:
+  - name: 'lrdc_stuff'
+    path: '/lrdc'
+
+# - name: gcr.io/cloud-builders/docker
+  # args: ['volume', 'ls']
+
+- name: gcr.io/cloud-builders/docker
+  args: ['build', '-t', 'chuck/ubuntu', .]
+
+- name: 'docker/compose:1.19.0'
+  # args: ['-f', 'docker-compose-dbg.yml', 'up', '-d']
+  args: ['-f', 'docker-compose-dbg.yml', 'up']
+  volumes:
+  - name: 'lrdc_stuff'
+    path: '/lrdc'
+
+- name: ubuntu
+  args: ['find', '/lrdc']
+  volumes:
+    - name: 'lrdc_stuff'
+      path: '/lrdc'
