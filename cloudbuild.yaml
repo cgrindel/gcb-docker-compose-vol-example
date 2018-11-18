@@ -13,8 +13,8 @@ steps:
   args: ['build', '-t', 'chuck/ubuntu', .]
 
 - name: 'docker/compose:1.19.0'
-  # args: ['-f', 'docker-compose-dbg.yml', 'up', '-d']
-  args: ['-f', 'docker-compose-dbg.yml', 'up']
+  # args: ['-f', 'docker-compose.yml', 'up', '-d']
+  args: ['-f', 'docker-compose.yml', 'up']
   volumes:
   - name: 'lrdc_stuff'
     path: '/lrdc'
